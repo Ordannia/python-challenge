@@ -1,11 +1,9 @@
 ## Importing the OS and csv
 import os
 import csv
-    ## Used notes from class
 
 ## Providing the path for the csv file to use
 csvpath = os.path.join('Resources', 'budget_data.csv')
-    ## Used notes from class
 
 ## Establishing variables
 unique_months = set()
@@ -24,14 +22,11 @@ previous_month_value2 = None
 ## Reading the csv file
 with open(csvpath, encoding='UTF-8') as csvfile:
     budget_csv = csv.reader(csvfile, delimiter=",")
-    ## Used notes from class
-
 
 ## Next - Skipping the header
     next(budget_csv)
 
 ## Total number of months included in dataset 
-## Should look like: Total Months: 86
     for row in budget_csv:
         month = tuple(row[0].split('-'))
         unique_months.add(month)
@@ -39,12 +34,8 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     total_months = len(unique_months)
 
     print(f"Total Months: {total_months}")
-    ## Used notes from class
-    ## Used recording from class
-    ## Used Xpert Learning Assistant
 
 ## Net total amount of "Profit/Losses" over the entire period
-## Should look like: Total: $22564198
     csvfile.seek(0)
 
     next(budget_csv)
@@ -53,10 +44,8 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         profit_losses_total += int(row[1])
 
     print(f"Total: ${profit_losses_total}")
-    ## Used notes from class
-    ## Used Xpert Learning Assistant - csvfile.seek(0)
+
 ## Changes in "Profit/Losses" over the entire period and then the average of those changes
-## Should look like: Average Change: $-8311.11
     csvfile.seek(0)
 
     next(budget_csv)
@@ -74,11 +63,8 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     average_change = sum(profit_changes) / len(profit_changes) if len(profit_changes) > 0 else 0
 
     print(f"Average Change: ${average_change:.2f}")
-    ## Xpert Learning Assistant helped me through many variations of code
-    ## This was the one that worked
 
 ## Greatest increase in profits (date and amount) over the entire period
-## Should look like: Greatest Increase in Profits: Aug-16 ($1862002)
     csvfile.seek(0)
 
     next(budget_csv)
@@ -97,11 +83,7 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     if increase_month is not None:
         print(f"Greatest Increase in Profits: {increase_month} (${greatest_increase})")  
  
-    ## Used notes from class
-    ## Used Xpert to futher define class notes
-
 ## Greatest decrease in profits (date and amount) over the entire period
-## Should look like: Greatest Decrease in Profits: Feb-14 ($-1825558)
     csvfile.seek(0)
 
     next(budget_csv)
@@ -119,8 +101,6 @@ with open(csvpath, encoding='UTF-8') as csvfile:
 
     if decrease_month is not None:
         print(f"Greatest Decrease in Profits: {decrease_month} (${greatest_decrease})")  
-    
-    ## Copied and amended from the above code
 
 ## Export text file
     output_path = os.path.join("analysis", "analysis.txt")
@@ -132,6 +112,3 @@ with open(csvpath, encoding='UTF-8') as csvfile:
         textfile.write(f"Average Change: ${average_change:.2f}\n")
         textfile.write(f"Greatest Increase in Profits: {increase_month} (${greatest_increase})\n")
         textfile.write(f"Greatest Decrease in Profits: {decrease_month} (${greatest_decrease})")
-
-    ## Adapted from class notes on exporting csv file
-    ## Used Xpert Learning Assistant to ensure I just had to change the file types
