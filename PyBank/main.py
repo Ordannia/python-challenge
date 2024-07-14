@@ -128,14 +128,10 @@ with open(csvpath, encoding='UTF-8') as csvfile:
     with open(output_path, "w") as textfile:
 
         textfile.write(f"Total Months: {total_months}\n")
-
         textfile.write(f"Total: ${profit_losses_total}\n")
-
         textfile.write(f"Average Change: ${average_change:.2f}\n")
-
         textfile.write(f"Greatest Increase in Profits: {increase_month} (${greatest_increase})\n")
-
-        textfile.write(f"Greatest Decrease in Profits: {decrease_month} (${greatest_decrease})\n")
+        textfile.write(f"Greatest Decrease in Profits: {decrease_month} (${greatest_decrease})")
 
     ## Adapted from class notes on exporting csv file
     ## Used Xpert Learning Assistant to ensure I just had to change the file types
